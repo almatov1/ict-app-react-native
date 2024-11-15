@@ -3,6 +3,7 @@ import { useProgress } from "../../lessons/store/progress";
 import { BORDER_RADIUS, COLORS, FONT_SIZE, PADDING } from "../../../core/config/template";
 import { Text } from "@react-navigation/elements";
 import { LESSONS } from "../../../core/config/shared";
+import { QUIZ } from "../../../core/config/quiz";
 
 const ResultComponent = () => {
     const { progress } = useProgress();
@@ -44,7 +45,7 @@ const ResultComponent = () => {
                                             color: COLORS.BLUE
                                         }}
                                     >
-                                        Тест нәтижесі - {item.test}/6
+                                        Тест нәтижесі - {item.test}/{QUIZ[index].length}
                                     </Text>
                                 </View>
                                 : <Text
