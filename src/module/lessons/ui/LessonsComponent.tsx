@@ -11,6 +11,10 @@ const LessonsComponent = ({ navigation }: { navigation: any }) => {
     const { define, progress } = useProgress();
     const currentLesson = progress.findIndex(item => !item.finished);
     const [stage, setStage] = useState(0);
+    const onFinish = (test: number) => {
+        define(currentLesson, { finished: true, test });
+        navigation.pop();
+    }
 
     if (currentLesson === -1) return (
         <Text
@@ -22,6 +26,7 @@ const LessonsComponent = ({ navigation }: { navigation: any }) => {
             Тақырыптар аяқталды
         </Text>
     );
+    if (stage === 3) return <TestComponent currentLesson={currentLesson} onFinish={onFinish} />;
     return (
         <View
             style={{
@@ -30,18 +35,10 @@ const LessonsComponent = ({ navigation }: { navigation: any }) => {
                 gap: 20
             }}
         >
-            {stage === 3 ? <TestComponent currentLesson={currentLesson} /> : <PdfComponent stage={stage} currentLesson={currentLesson} />}
+            <PdfComponent stage={stage} currentLesson={currentLesson} />
             <ButtonComponent
                 title={stage !== 3 ? "Жалғастыру" : "Аяқтау"}
-                onClick={() => {
-                    if (stage === 3) {
-                        define(currentLesson, { finished: true, test: 5 });
-                        navigation.pop();
-                        return;
-                    }
-
-                    setStage(stage + 1);
-                }}
+                onClick={() => setStage(stage + 1)}
             />
         </View>
     );

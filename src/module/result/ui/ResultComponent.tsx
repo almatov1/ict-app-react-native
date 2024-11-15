@@ -44,7 +44,7 @@ const ResultComponent = () => {
                                             color: COLORS.BLUE
                                         }}
                                     >
-                                        Тест нәтижесі - 5/{item.test}
+                                        Тест нәтижесі - {item.test}/6
                                     </Text>
                                 </View>
                                 : <Text
