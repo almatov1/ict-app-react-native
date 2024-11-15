@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "../../module/home/screen/HomeScreen";
-import DetailsScreen from "../../module/details/screen/DetailsScreen";
 import { ROUTES } from "./routes";
 import { COLORS } from '../config/template';
 import LessonsScreen from '../../module/lessons/screen/LessonsScreen';
@@ -21,7 +20,6 @@ const RouteComponent = () => {
                 <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
                 <Stack.Screen name={ROUTES.LESSONS} component={LessonsScreen} />
                 <Stack.Screen name={ROUTES.RESULT} component={ResultScreen} />
-                <Stack.Screen name={ROUTES.DETAILS} component={DetailsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

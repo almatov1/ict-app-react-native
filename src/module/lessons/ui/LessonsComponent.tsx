@@ -1,35 +1,16 @@
-import { Dimensions, ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import ButtonComponent from "../../shared/ui/ButtonComponent";
 import { useProgress } from "../store/progress";
 import { useState } from "react";
-import Pdf from "react-native-pdf";
-import { BORDER_RADIUS, FONT_SIZE } from "../../../core/config/template";
+import { FONT_SIZE } from "../../../core/config/template";
+import PdfComponent from "./PdfComponent";
+import TestComponent from "./TestComponent";
 
 const LessonsComponent = ({ navigation }: { navigation: any }) => {
     // define
     const { define, progress } = useProgress();
     const currentLesson = progress.findIndex(item => !item.finished);
     const [stage, setStage] = useState(0);
-
-    // content
-    const renderContent = () => {
-        const pdfDirection = stage === 0 ? 'lec' : stage === 1 ? 'prac' : 'lab';
-        switch (stage) {
-            case 3:
-                return <Text>test</Text>;
-            default:
-                return <Pdf
-                    source={{
-                        uri: `bundle-assets://pdf/${pdfDirection}/${pdfDirection}-${currentLesson + 1}.pdf`
-                    }}
-                    style={{
-                        flex: 1,
-                        height: Dimensions.get('window').height,
-                        borderRadius: BORDER_RADIUS.DEFAULT
-                    }}
-                />;
-        }
-    };
 
     if (currentLesson === -1) return (
         <Text
@@ -49,7 +30,7 @@ const LessonsComponent = ({ navigation }: { navigation: any }) => {
                 gap: 20
             }}
         >
-            {renderContent()}
+            {stage === 3 ? <TestComponent currentLesson={currentLesson} /> : <PdfComponent stage={stage} currentLesson={currentLesson} />}
             <ButtonComponent
                 title={stage !== 3 ? "Жалғастыру" : "Аяқтау"}
                 onClick={() => {
