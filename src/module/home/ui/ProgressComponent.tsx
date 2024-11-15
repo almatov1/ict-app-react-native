@@ -17,7 +17,7 @@ const ProgressComponent = () => {
                 borderRadius: BORDER_RADIUS.DEFAULT,
                 display: 'flex',
                 flexDirection: 'row',
-                gap: 20,
+                gap: 10,
                 alignItems: 'center'
             }}
         >

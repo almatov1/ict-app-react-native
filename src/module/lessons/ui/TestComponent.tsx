@@ -51,7 +51,7 @@ const TestComponent = ({ currentLesson, onFinish }: { currentLesson: number, onF
                                     value={selectedAnswers[index] === option}
                                     tintColors={{ true: COLORS.BLUE, false: '#d4d4d4' }}
                                 />
-                                <Text style={{ fontSize: FONT_SIZE.SMALL }}>{option}</Text>
+                                <Text style={{ fontSize: FONT_SIZE.SMALL, width: 270 }}>{option}</Text>
                             </Pressable>
                         ))}
                     </View>
