@@ -1,6 +1,6 @@
 import { Dimensions, Image, ScrollView } from "react-native";
 import { BORDER_RADIUS } from "../../../core/config/template";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RNFS from 'react-native-fs';
 import { convert } from "react-native-pdf-to-image";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -26,11 +26,18 @@ const PdfComponent = ({ stage, currentLesson }: { stage: number, currentLesson: 
             });
     }, [stage, currentLesson]);
     const screenWidth = Dimensions.get('window').width;
+    const scrollViewRef = useRef<ScrollView>(null);
+    useEffect(() => {
+        if (scrollViewRef.current) {
+            scrollViewRef.current.scrollTo({ y: 0, animated: false });
+        }
+    }, [stage, currentLesson]);
 
     if (!images) return null;
     return (
         <GestureHandlerRootView>
             <ScrollView
+                ref={scrollViewRef}
                 contentContainerStyle={{
                     gap: 20
                 }}
@@ -38,12 +45,12 @@ const PdfComponent = ({ stage, currentLesson }: { stage: number, currentLesson: 
                 {images.length > 0 ? (
                     images.map((imageUri, index) => (
                         <Zoom
+                            key={index}
                             doubleTapConfig={{
                                 defaultScale: 2
                             }}
                         >
                             <Image
-                                key={index}
                                 source={{ uri: `file://${imageUri}` }}
                                 style={{
                                     width: screenWidth - 20,

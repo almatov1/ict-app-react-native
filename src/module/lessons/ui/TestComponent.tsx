@@ -50,6 +50,7 @@ const TestComponent = ({ currentLesson, onFinish }: { currentLesson: number, onF
                                 <CheckBox
                                     value={selectedAnswers[index] === option}
                                     tintColors={{ true: COLORS.BLUE, false: '#d4d4d4' }}
+                                    disabled={true}
                                 />
                                 <Text style={{ fontSize: FONT_SIZE.SMALL, width: 270 }}>{option}</Text>
                             </Pressable>
