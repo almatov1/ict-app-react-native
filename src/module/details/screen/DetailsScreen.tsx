@@ -1,12 +1,16 @@
 import { Button, Dimensions, Text, View } from "react-native";
-import { ROUTES } from "../../../core/route/routes";
 import Pdf from "react-native-pdf";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { RouteProp } from "@react-navigation/native";
+import { ROUTES } from "../../../core/route/routes";
 
-const DetailsScreen = ({ navigation }: { navigation: StackNavigationProp<any, any> }) => {
+const DetailsScreen = ({ navigation, route }: { navigation: StackNavigationProp<any, any>, route: RouteProp<any, typeof ROUTES.DETAILS> }) => {
+    // DEFINE
+    const { itemId } = route.params || {};
+
     return (
         <View style={{ flex: 1 }}>
-            <Text>Details Screen</Text>
+            <Text>Details Screen {itemId}</Text>
             <Button
                 title="Go to Home"
                 onPress={() => navigation.pop()}
